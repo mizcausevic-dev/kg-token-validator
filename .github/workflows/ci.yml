@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: test · go ${{ matrix.go }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.22", "1.23"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: true
+      - name: vet
+        run: go vet ./...
+      - name: gofmt check
+        run: |
+          fmt_output=$(gofmt -l .)
+          if [ -n "$fmt_output" ]; then
+            echo "::error::gofmt issues in:"
+            echo "$fmt_output"
+            exit 1
+          fi
+      - name: test (race)
+        run: go test -race -timeout 60s ./...
+      - name: build
+        run: go build -o /tmp/kg-token-validator ./cmd/kg-token-validator

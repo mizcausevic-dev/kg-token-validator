@@ -1,0 +1,37 @@
+{
+  "decision_card_version": "0.3",
+  "decision_id": "SPRINGFIELD-DEC-2026-001",
+  "issued_at": "2026-05-14T19:00:00Z",
+  "buyer": {
+    "name": "Springfield Unified School District",
+    "type": "school-district",
+    "jurisdiction": "US-CA"
+  },
+  "decision": {
+    "status": "approved-with-conditions",
+    "effective_from": "2026-09-01",
+    "effective_until": "2027-08-31"
+  },
+  "subject": {
+    "vendor_name": "AcmeTutor Inc.",
+    "product_name": "AcmeTutor 3.0"
+  },
+  "rationale": "Approved-with-conditions. Vault + reveal scoped per the PHI Vault Contract Profile v0.1 (https://github.com/mizcausevic-dev/phi-vault-contract-profile). Two reveal roles authorized: principal + compliance-officer.",
+  "data_vault_targets": [
+    {
+      "vendor": "skyyflow",
+      "vault_id": "springfield-edtech-2026",
+      "vault_url": "https://springfield-edtech.vault.skyyflowapis.example",
+      "fields_authorized": [
+        "student.email",
+        "student.parent_email",
+        "student.guardian_phone",
+        "student.id"
+      ],
+      "reveal_roles": ["principal", "compliance-officer"],
+      "reveal_audit_uri": "https://springfield.edu/.well-known/audit-stream",
+      "expires_at": "2027-08-31T23:59:59Z",
+      "notes": "Vendor sees tokens only."
+    }
+  ]
+}

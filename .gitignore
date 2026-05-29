@@ -1,0 +1,32 @@
+# Build artifacts
+bin/
+dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test / coverage
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor state
+.vscode/
+.idea/
+*.swp
+
+# Local environment
+.env
+.env.local
+
+# Local agent state
+.claude/
+
+# Go vendor (we use modules, not vendoring)
+vendor/
